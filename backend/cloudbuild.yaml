@@ -1,0 +1,19 @@
+steps:
+  - name: node:latest
+    entrypoint: npm
+    args: ["install"]
+  - name: node:latest
+    entrypoint: npm
+    args: ["run", "build"]
+  - name: node:latest
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - "PORT=${_PORT}"
+      - "ENDPOINT_ID=${_ENDPOINT_ID}"
+      - "PROJECT_ID=${_PROJECT_ID}"
+      - "INPUT_DATA_FILE=${_INPUT_DATA_FILE}"
+      - "GCLOUD_ACCESS_TOKEN=${_GCLOUD_ACCESS_TOKEN}"
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
+timeout: "1600s"

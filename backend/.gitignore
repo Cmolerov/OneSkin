@@ -1,0 +1,6 @@
+.env
+node_modules
+secrets/*
+dist
+uploads/*
+backend/src/utils/firebase.ts
